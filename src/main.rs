@@ -10,7 +10,7 @@ fn main() {
     let mut collected: Vec<&str> = german.split_whitespace().collect();
     let mut cloned = collected.clone();
 
-    let mut fer_coll = Collator::new(Tailoring::default(), false);
+    let fer_coll = Collator::new(Tailoring::default(), false);
     let collator = ucol::UCollator::try_from("en").unwrap();
 
     collected.sort_unstable_by(|a, b| fer_coll.collate_no_tiebreak(a, b));

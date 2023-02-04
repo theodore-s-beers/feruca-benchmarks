@@ -303,7 +303,7 @@ const ALPHABET: [&str; 5_616] = [
 ];
 
 fn feruca(c: &mut Criterion) {
-    let mut collator = Collator::new(Tailoring::default(), false);
+    let collator = Collator::new(Tailoring::default(), false);
 
     c.bench_function("feruca alphabet sort", |b| {
         b.iter(|| {

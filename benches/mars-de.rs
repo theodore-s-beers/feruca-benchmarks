@@ -7,7 +7,7 @@ use std::convert::TryFrom;
 static MARS: Lazy<String> = Lazy::new(|| std::fs::read_to_string("test-data/mars-de.txt").unwrap());
 
 fn feruca(c: &mut Criterion) {
-    let mut collator = Collator::new(Tailoring::default(), false);
+    let collator = Collator::new(Tailoring::default(), false);
 
     c.bench_function("feruca Mars-DE text sort", |b| {
         b.iter(|| {

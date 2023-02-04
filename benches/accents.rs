@@ -595,7 +595,7 @@ const ACCENTS: [&str; 10_577] = [
 ];
 
 fn feruca(c: &mut Criterion) {
-    let mut collator = Collator::new(Tailoring::default(), false);
+    let collator = Collator::new(Tailoring::default(), false);
 
     c.bench_function("feruca accents sort", |b| {
         b.iter(|| {

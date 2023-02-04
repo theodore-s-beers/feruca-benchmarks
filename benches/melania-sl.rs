@@ -8,7 +8,7 @@ static MEL: Lazy<String> =
     Lazy::new(|| std::fs::read_to_string("test-data/melania-sl.txt").unwrap());
 
 fn feruca(c: &mut Criterion) {
-    let mut collator = Collator::new(Tailoring::default(), false);
+    let collator = Collator::new(Tailoring::default(), false);
 
     c.bench_function("feruca Melania-SL text sort", |b| {
         b.iter(|| {
