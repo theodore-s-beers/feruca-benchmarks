@@ -13,7 +13,7 @@ fn feruca(c: &mut Criterion) {
         b.iter(|| {
             let text = MARS.clone();
             let mut collected: Vec<&str> = text.split_whitespace().collect();
-            collected.sort_unstable_by(|a, b| collator.collate(a, b));
+            collected.sort_unstable_by(|a, b| collator.collate_no_tiebreak(a, b));
         })
     });
 }

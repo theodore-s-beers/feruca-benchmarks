@@ -600,7 +600,7 @@ fn feruca(c: &mut Criterion) {
     c.bench_function("feruca accents sort", |b| {
         b.iter(|| {
             let mut ac = ACCENTS;
-            ac.sort_unstable_by(|a, b| collator.collate(a, b));
+            ac.sort_unstable_by(|a, b| collator.collate_no_tiebreak(a, b));
         })
     });
 }

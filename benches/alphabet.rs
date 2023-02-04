@@ -308,7 +308,7 @@ fn feruca(c: &mut Criterion) {
     c.bench_function("feruca alphabet sort", |b| {
         b.iter(|| {
             let mut al = ALPHABET;
-            al.sort_unstable_by(|a, b| collator.collate(a, b));
+            al.sort_unstable_by(|a, b| collator.collate_no_tiebreak(a, b));
         })
     });
 }
