@@ -5,9 +5,9 @@ edition = "2021"
 
 [dependencies]
 feruca = { git = "https://github.com/theodore-s-beers/feruca" }
+icu = "1.1.0"
+icu_testdata = "1.1.1"
 once_cell = "1.17.0"
-rust_icu_ucol = "3.0.0"
-rust_icu_ustring = "3.0.0"
 
 [dev-dependencies]
 criterion = "0.4.0"

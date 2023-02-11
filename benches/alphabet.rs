@@ -1,7 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use feruca::{Collator, Tailoring};
-use rust_icu_ucol as ucol;
-use std::convert::TryFrom;
+use icu::collator::{Collator, CollatorOptions};
+use icu::locid::locale;
 
 const ALPHABET: [&str; 5_616] = [
     "z", "y", "x", "w", "v", "u", "t", "s", "r", "q", "p", "o", "n", "m", "l", "k", "j", "i", "h",
@@ -303,7 +302,7 @@ const ALPHABET: [&str; 5_616] = [
 ];
 
 fn feruca(c: &mut Criterion) {
-    let collator = Collator::new(Tailoring::default(), false);
+    let collator = feruca::Collator::new(feruca::Tailoring::default(), false);
 
     c.bench_function("feruca alphabet sort", |b| {
         b.iter(|| {
@@ -314,12 +313,17 @@ fn feruca(c: &mut Criterion) {
 }
 
 fn ucol(c: &mut Criterion) {
-    let collator = ucol::UCollator::try_from("en").expect("collator");
+    let icu_coll = Collator::try_new_unstable(
+        &icu_testdata::unstable(),
+        &locale!("en").into(),
+        CollatorOptions::new(),
+    )
+    .unwrap();
 
     c.bench_function("ucol alphabet sort", |b| {
         b.iter(|| {
             let mut al = ALPHABET;
-            al.sort_unstable_by(|a, b| collator.strcoll_utf8(a, b).unwrap());
+            al.sort_unstable_by(|a, b| icu_coll.compare(a, b));
         })
     });
 }

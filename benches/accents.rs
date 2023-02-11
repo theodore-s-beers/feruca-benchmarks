@@ -1,7 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use feruca::{Collator, Tailoring};
-use rust_icu_ucol as ucol;
-use std::convert::TryFrom;
+use icu::collator::{Collator, CollatorOptions};
+use icu::locid::locale;
 
 const ACCENTS: [&str; 10_577] = [
     "d", "dž", "đ", "a", "b", "c", "č", "ć", "d", "dž", "đ", "a", "b", "c", "č", "ć", "d", "dž",
@@ -595,7 +594,7 @@ const ACCENTS: [&str; 10_577] = [
 ];
 
 fn feruca(c: &mut Criterion) {
-    let collator = Collator::new(Tailoring::default(), false);
+    let collator = feruca::Collator::new(feruca::Tailoring::default(), false);
 
     c.bench_function("feruca accents sort", |b| {
         b.iter(|| {
@@ -606,12 +605,17 @@ fn feruca(c: &mut Criterion) {
 }
 
 fn ucol(c: &mut Criterion) {
-    let collator = ucol::UCollator::try_from("en").expect("collator");
+    let icu_coll = Collator::try_new_unstable(
+        &icu_testdata::unstable(),
+        &locale!("en").into(),
+        CollatorOptions::new(),
+    )
+    .unwrap();
 
     c.bench_function("ucol accents sort", |b| {
         b.iter(|| {
             let mut ac = ACCENTS;
-            ac.sort_unstable_by(|a, b| collator.strcoll_utf8(a, b).unwrap());
+            ac.sort_unstable_by(|a, b| icu_coll.compare(a, b));
         })
     });
 }
