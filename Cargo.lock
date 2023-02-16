@@ -217,7 +217,7 @@ checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
 [[package]]
 name = "feruca"
 version = "0.7.1"
-source = "git+https://github.com/theodore-s-beers/feruca#17a683e749d3db7dbc289166b98011b711561ebe"
+source = "git+https://github.com/theodore-s-beers/feruca#aaba47cb369473c25e270808c27c2497bdc59a10"
 dependencies = [
  "bincode",
  "bstr",
@@ -633,9 +633,9 @@ dependencies = [
 
 [[package]]
 name = "once_cell"
-version = "1.17.0"
+version = "1.17.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f61fba1741ea2b3d6a1e3178721804bb716a68a6aeba1149b5d52e3d464ea66"
+checksum = "b7e5500299e16ebb147ae15a00a942af264cf3688f47923b8fc2cd5858f23ad3"
 
 [[package]]
 name = "oorandom"
