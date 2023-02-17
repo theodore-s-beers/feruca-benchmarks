@@ -12,6 +12,9 @@ once_cell = "1.17.1"
 [dev-dependencies]
 criterion = "0.4.0"
 
+[profile.release]
+lto = true
+
 [[bench]]
 name = "accents"
 harness = false
