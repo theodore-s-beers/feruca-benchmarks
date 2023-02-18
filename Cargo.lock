@@ -499,9 +499,9 @@ dependencies = [
 
 [[package]]
 name = "icu_testdata"
-version = "1.1.1"
+version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a8b292d1d4bfeb116bc726319e0db45406d03094e6a1eb7e47192155c3244136"
+checksum = "e71cc50e011b29c27a4d23dce472f4eefa416302d5acad58c90ef06a16564a7c"
 dependencies = [
  "icu_calendar",
  "icu_collator",
