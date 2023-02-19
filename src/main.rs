@@ -10,7 +10,7 @@ fn main() {
     let mut collected: Vec<&str> = german.split_whitespace().collect();
     let mut cloned = collected.clone();
 
-    let fer_coll = feruca::Collator::new(feruca::Tailoring::default(), false);
+    let mut fer_coll = feruca::Collator::new(feruca::Tailoring::default(), false);
     let icu_coll = Collator::try_new_unstable(
         &icu_testdata::unstable(),
         &locale!("en").into(),

@@ -6,7 +6,7 @@ use once_cell::sync::Lazy;
 static MARS: Lazy<String> = Lazy::new(|| std::fs::read_to_string("test-data/mars-de.txt").unwrap());
 
 fn feruca(c: &mut Criterion) {
-    let collator = feruca::Collator::new(feruca::Tailoring::default(), false);
+    let mut collator = feruca::Collator::new(feruca::Tailoring::default(), false);
 
     c.bench_function("feruca Mars-DE text sort", |b| {
         b.iter(|| {
