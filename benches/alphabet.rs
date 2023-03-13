@@ -302,12 +302,12 @@ const ALPHABET: [&str; 5_616] = [
 ];
 
 fn feruca(c: &mut Criterion) {
-    let mut collator = feruca::Collator::new(feruca::Tailoring::default(), false);
+    let mut collator = feruca::Collator::new(feruca::Tailoring::default(), false, false);
 
     c.bench_function("feruca alphabet sort", |b| {
         b.iter(|| {
             let mut al = ALPHABET;
-            al.sort_unstable_by(|a, b| collator.collate_no_tiebreak(a, b));
+            al.sort_unstable_by(|a, b| collator.collate(a, b));
         })
     });
 }

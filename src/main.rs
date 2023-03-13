@@ -10,7 +10,7 @@ fn main() {
     let mut collected: Vec<&str> = german.split_whitespace().collect();
     let mut cloned = collected.clone();
 
-    let mut fer_coll = feruca::Collator::new(feruca::Tailoring::default(), false);
+    let mut fer_coll = feruca::Collator::new(feruca::Tailoring::default(), false, false);
     let icu_coll = Collator::try_new_unstable(
         &icu_testdata::unstable(),
         &locale!("en").into(),
@@ -18,7 +18,7 @@ fn main() {
     )
     .unwrap();
 
-    collected.sort_unstable_by(|a, b| fer_coll.collate_no_tiebreak(a, b));
+    collected.sort_unstable_by(|a, b| fer_coll.collate(a, b));
     cloned.sort_unstable_by(|a, b| icu_coll.compare(a, b));
 
     assert_eq!(collected, cloned);
