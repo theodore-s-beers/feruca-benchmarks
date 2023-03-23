@@ -21,5 +21,7 @@ fn main() {
     collected.sort_unstable_by(|a, b| fer_coll.collate(a, b));
     cloned.sort_unstable_by(|a, b| icu_coll.compare(a, b));
 
+    println!("Comparing feruca and icu4x sort results...");
     assert_eq!(collected, cloned);
+    println!("Results match!");
 }
