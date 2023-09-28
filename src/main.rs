@@ -11,12 +11,7 @@ fn main() {
     let mut cloned = collected.clone();
 
     let mut fer_coll = feruca::Collator::new(feruca::Tailoring::default(), false, false);
-    let icu_coll = Collator::try_new_unstable(
-        &icu_testdata::unstable(),
-        &locale!("en").into(),
-        CollatorOptions::new(),
-    )
-    .unwrap();
+    let icu_coll = Collator::try_new(&locale!("en").into(), CollatorOptions::new()).unwrap();
 
     collected.sort_unstable_by(|a, b| fer_coll.collate(a, b));
     cloned.sort_unstable_by(|a, b| icu_coll.compare(a, b));

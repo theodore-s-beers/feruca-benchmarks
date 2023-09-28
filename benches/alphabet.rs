@@ -313,12 +313,7 @@ fn feruca(c: &mut Criterion) {
 }
 
 fn ucol(c: &mut Criterion) {
-    let icu_coll = Collator::try_new_unstable(
-        &icu_testdata::unstable(),
-        &locale!("en").into(),
-        CollatorOptions::new(),
-    )
-    .unwrap();
+    let icu_coll = Collator::try_new(&locale!("en").into(), CollatorOptions::new()).unwrap();
 
     c.bench_function("ucol alphabet sort", |b| {
         b.iter(|| {
