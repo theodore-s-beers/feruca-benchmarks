@@ -1,9 +1,10 @@
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use icu::collator::{Collator, CollatorOptions};
 use icu::locid::locale;
-use once_cell::sync::Lazy;
+use std::sync::LazyLock;
 
-static MARS: Lazy<String> = Lazy::new(|| std::fs::read_to_string("test-data/mars-de.txt").unwrap());
+static MARS: LazyLock<String> =
+    LazyLock::new(|| std::fs::read_to_string("test-data/mars-de.txt").unwrap());
 
 fn feruca(c: &mut Criterion) {
     let mut collator = feruca::Collator::new(feruca::Tailoring::default(), false, false);
