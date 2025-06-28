@@ -243,7 +243,7 @@ checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 [[package]]
 name = "feruca"
 version = "0.11.1"
-source = "git+https://github.com/theodore-s-beers/feruca#8aad71758e2c32f9fb030bdbc428ac6a40125e00"
+source = "git+https://github.com/theodore-s-beers/feruca#0187c637e1ae5cde3fe2b87a155fa6bbb44692fb"
 dependencies = [
  "bincode",
  "bstr",
