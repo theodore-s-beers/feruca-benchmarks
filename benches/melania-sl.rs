@@ -1,6 +1,7 @@
 use criterion::{Criterion, criterion_group, criterion_main};
-use icu::collator::{Collator, CollatorOptions};
-use icu::locid::locale;
+use icu::collator::Collator;
+use icu::collator::options::CollatorOptions;
+use icu::locale::locale;
 use std::sync::LazyLock;
 
 static MEL: LazyLock<String> =
@@ -19,7 +20,7 @@ fn feruca(c: &mut Criterion) {
 }
 
 fn ucol(c: &mut Criterion) {
-    let icu_coll = Collator::try_new(&locale!("en").into(), CollatorOptions::new()).unwrap();
+    let icu_coll = Collator::try_new(locale!("en").into(), CollatorOptions::default()).unwrap();
 
     c.bench_function("ucol Melania-SL text sort", |b| {
         b.iter(|| {

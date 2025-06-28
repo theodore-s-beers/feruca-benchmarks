@@ -1,6 +1,7 @@
 use criterion::{Criterion, criterion_group, criterion_main};
-use icu::collator::{Collator, CollatorOptions};
-use icu::locid::locale;
+use icu::collator::Collator;
+use icu::collator::options::CollatorOptions;
+use icu::locale::locale;
 
 const ACCENTS: [&str; 10_577] = [
     "d", "dž", "đ", "a", "b", "c", "č", "ć", "d", "dž", "đ", "a", "b", "c", "č", "ć", "d", "dž",
@@ -605,7 +606,7 @@ fn feruca(c: &mut Criterion) {
 }
 
 fn ucol(c: &mut Criterion) {
-    let icu_coll = Collator::try_new(&locale!("en").into(), CollatorOptions::new()).unwrap();
+    let icu_coll = Collator::try_new(locale!("en").into(), CollatorOptions::default()).unwrap();
 
     c.bench_function("ucol accents sort", |b| {
         b.iter(|| {
