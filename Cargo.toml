@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 feruca = { git = "https://github.com/theodore-s-beers/feruca" }
+# feruca = { path = "../feruca" }
 icu = "2.0.0"
 icu_testdata = "1.5.0"
 
