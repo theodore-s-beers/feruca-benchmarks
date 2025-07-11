@@ -12,8 +12,7 @@ fn feruca(c: &mut Criterion) {
 
     c.bench_function("feruca Melania-SL text sort", |b| {
         b.iter(|| {
-            let text = MEL.clone();
-            let mut collected: Vec<&str> = text.split_whitespace().collect();
+            let mut collected: Vec<&str> = MEL.split_whitespace().collect();
             collected.sort_unstable_by(|a, b| collator.collate(a, b));
         })
     });
@@ -24,8 +23,7 @@ fn ucol(c: &mut Criterion) {
 
     c.bench_function("ucol Melania-SL text sort", |b| {
         b.iter(|| {
-            let text = MEL.clone();
-            let mut collected: Vec<&str> = text.split_whitespace().collect();
+            let mut collected: Vec<&str> = MEL.split_whitespace().collect();
             collected.sort_unstable_by(|a, b| icu_coll.compare(a, b));
         })
     });
@@ -34,8 +32,7 @@ fn ucol(c: &mut Criterion) {
 fn naive(c: &mut Criterion) {
     c.bench_function("naive Melania-SL text sort", |b| {
         b.iter(|| {
-            let text = MEL.clone();
-            let mut collected: Vec<&str> = text.split_whitespace().collect();
+            let mut collected: Vec<&str> = MEL.split_whitespace().collect();
             collected.sort_unstable();
         })
     });
