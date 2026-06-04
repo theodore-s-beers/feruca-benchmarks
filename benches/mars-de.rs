@@ -19,11 +19,11 @@ fn feruca(c: &mut Criterion) {
     });
 }
 
-fn ucol(c: &mut Criterion) {
+fn icu4x(c: &mut Criterion) {
     let icu_coll = Collator::try_new(locale!("en").into(), CollatorOptions::default()).unwrap();
     let data: Vec<&str> = MARS.split_whitespace().collect();
 
-    c.bench_function("ucol Mars-DE text sort", |b| {
+    c.bench_function("icu4x Mars-DE text sort", |b| {
         b.iter(|| {
             let mut collected = data.clone();
             collected.sort_unstable_by(|a, b| icu_coll.compare(a, b));
@@ -42,5 +42,5 @@ fn naive(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, feruca, ucol, naive);
+criterion_group!(benches, feruca, icu4x, naive);
 criterion_main!(benches);

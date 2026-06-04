@@ -605,10 +605,10 @@ fn feruca(c: &mut Criterion) {
     });
 }
 
-fn ucol(c: &mut Criterion) {
+fn icu4x(c: &mut Criterion) {
     let icu_coll = Collator::try_new(locale!("en").into(), CollatorOptions::default()).unwrap();
 
-    c.bench_function("ucol accents sort", |b| {
+    c.bench_function("icu4x accents sort", |b| {
         b.iter(|| {
             let mut ac = ACCENTS;
             ac.sort_unstable_by(|a, b| icu_coll.compare(a, b));
@@ -625,5 +625,5 @@ fn naive(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, feruca, ucol, naive);
+criterion_group!(benches, feruca, icu4x, naive);
 criterion_main!(benches);

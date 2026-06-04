@@ -313,10 +313,10 @@ fn feruca(c: &mut Criterion) {
     });
 }
 
-fn ucol(c: &mut Criterion) {
+fn icu4x(c: &mut Criterion) {
     let icu_coll = Collator::try_new(locale!("en").into(), CollatorOptions::default()).unwrap();
 
-    c.bench_function("ucol alphabet sort", |b| {
+    c.bench_function("icu4x alphabet sort", |b| {
         b.iter(|| {
             let mut al = ALPHABET;
             al.sort_unstable_by(|a, b| icu_coll.compare(a, b));
@@ -333,5 +333,5 @@ fn naive(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, feruca, ucol, naive);
+criterion_group!(benches, feruca, icu4x, naive);
 criterion_main!(benches);
