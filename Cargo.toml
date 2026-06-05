@@ -9,6 +9,9 @@ feruca = { git = "https://github.com/theodore-s-beers/feruca" }
 icu = "2.2.0"
 icu_testdata = "1.5.0"
 
+[features]
+pipeline-stats = ["feruca/pipeline-stats"]
+
 [dev-dependencies]
 criterion = "0.8.2"
 
@@ -17,17 +20,9 @@ debug = true
 lto = true
 
 [[bench]]
-name = "accents"
+name = "destatis-de"
 harness = false
 
 [[bench]]
-name = "alphabet"
-harness = false
-
-[[bench]]
-name = "mars-de"
-harness = false
-
-[[bench]]
-name = "melania-sl"
+name = "met"
 harness = false
