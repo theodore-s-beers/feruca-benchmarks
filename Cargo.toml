@@ -7,7 +7,6 @@ edition = "2024"
 feruca = { git = "https://github.com/theodore-s-beers/feruca" }
 # feruca = { path = "../feruca" }
 icu = "2.3.1"
-icu_testdata = "1.5.0"
 
 [features]
 pipeline-stats = ["feruca/pipeline-stats"]
