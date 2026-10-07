@@ -60,8 +60,8 @@ fn print_pipeline_stats(name: &str, stats: &PipelineStats) {
         stats.lazy_utf8_primary_attempts
     );
     eprintln!(
-        "  lazy UTF-8 fallbacks: reused-prefix={} full={}",
-        stats.lazy_utf8_prefix_reused, stats.lazy_utf8_full_fallback
+        "  lazy UTF-8 full fallbacks: {}",
+        stats.lazy_utf8_full_fallback
     );
     eprintln!(
         "  reached later levels: {} ({:.2}%)",
